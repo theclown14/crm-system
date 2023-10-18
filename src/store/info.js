@@ -16,7 +16,6 @@ export default {
     actions: {
         async fetchInfo({ dispatch, commit }) {
             try {
-                console.log('asd1');
                 const uid = await dispatch('getUid');
                 const info = (
                     await firebase

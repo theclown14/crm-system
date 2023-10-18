@@ -5,7 +5,9 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import dateFilter from './filters/date.filter';
+import currencyFilter from './filters/currency.filter';
 import massegePlugin from './utils/message.plugin';
+import LoaderItem from './components/app/LoaderItem.vue';
 import 'materialize-css/dist/js/materialize.min';
 
 import firebase from 'firebase/compat/app';
@@ -17,6 +19,8 @@ import 'firebase/compat/auth';
 Vue.use(massegePlugin);
 Vue.use(Vuelidate);
 Vue.filter('date', dateFilter);
+Vue.filter('currency', currencyFilter);
+Vue.component('LoaderItem', LoaderItem);
 
 const firebaseConfig = {
     apiKey: 'AIzaSyA5wbC7-wb8GFJpe3R9EHrRhlL7d7jpoFA',
