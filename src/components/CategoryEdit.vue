@@ -38,7 +38,7 @@
                     <input
                         id="limit"
                         type="number"
-                        v-model="limit"
+                        v-model.number="limit"
                         :class="{
                             invalid: $v.limit.$dirty && !$v.limit.minValue,
                         }" />
