@@ -4,9 +4,14 @@
             <h3>Новая запись</h3>
         </div>
 
-        <form class="form">
+        <LoaderItem v-if="loading" />
+        <p class="center" v-else-if="!categories.length">
+            Нет категорий.
+            <router-link to="/categories">Создать категорию</router-link>
+        </p>
+        <form class="form" v-else>
             <div class="input-field">
-                <select>
+                <select ref="select">
                     <option>name cat</option>
                 </select>
                 <label>Выберите категорию</label>
@@ -53,3 +58,31 @@
         </form>
     </div>
 </template>
+
+<script>
+import LoaderItem from '@/components/app/LoaderItem';
+
+export default {
+    name: 'RecordPage',
+    components: {
+        LoaderItem,
+    },
+    data() {
+        return {
+            categories: [],
+            select: null,
+            loading: true,
+        };
+    },
+    async mounted() {
+        this.categories = await this.$store.dispatch('fetchCategories');
+        this.loading = false;
+        this.select = window.M.FormSelect.init(this.$refs.select);
+    },
+    destroyed() {
+        if (this.select && this.select.destroy) {
+            this.select.destroy();
+        }
+    },
+};
+</script>
