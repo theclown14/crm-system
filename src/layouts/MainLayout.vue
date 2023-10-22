@@ -25,7 +25,7 @@
 <script>
 import NavigationBar from '../components/app/NavigationBar';
 import SideBar from '../components/app/SideBar';
-import LoaderItem from '../components/app/LoaderItem';
+
 import messages from '@/utils/messages';
 export default {
     name: 'main-layout',
@@ -44,7 +44,6 @@ export default {
     components: {
         NavigationBar,
         SideBar,
-        LoaderItem,
     },
     computed: {
         error() {

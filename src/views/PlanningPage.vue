@@ -30,15 +30,11 @@
 </template>
 
 <script>
-import LoaderItem from '@/components/app/LoaderItem.vue';
 import { mapGetters } from 'vuex';
 import currencyFilter from '@/filters/currency.filter';
 
 export default {
     name: 'PlanningPage',
-    components: {
-        LoaderItem,
-    },
     data() {
         return {
             loading: true,

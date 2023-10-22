@@ -21,7 +21,6 @@
 <script>
 import CategoryCreate from '@/components/CategoryCreate';
 import CategoryEdit from '@/components/CategoryEdit';
-import LoaderItem from '@/components/app/LoaderItem';
 
 export default {
     name: 'CategoriesPage',
@@ -39,7 +38,6 @@ export default {
     components: {
         CategoryCreate,
         CategoryEdit,
-        LoaderItem,
     },
     methods: {
         addNewCategory(category) {
