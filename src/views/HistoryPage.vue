@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>История записей</h3>
+            <h3>{{ 'History_Record' | localize }}</h3>
         </div>
 
         <div class="history-chart">
@@ -10,8 +10,10 @@
         <!-- <Pie id="my-chart-id" :options="chartOptions" :data="chartData" /> -->
         <LoaderItem v-if="loading" />
         <p class="center" v-else-if="!records.length">
-            Записей пока нет.
-            <router-link to="/record">Создать запись</router-link>
+            {{ 'Records_Not_Found' | localize }}
+            <router-link to="/record">{{
+                'Category_Create' | localize
+            }}</router-link>
         </p>
         <section v-else>
             <HistoryTable :records="records" />
@@ -26,6 +28,9 @@ import { Pie } from 'vue-chartjs';
 
 export default {
     name: 'HistoryPage',
+    metaInfo() {
+        return { title: this.$title('Menu_History') };
+    },
     components: { HistoryTable },
     extends: Pie,
     data() {

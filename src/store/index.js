@@ -24,9 +24,8 @@ export default new Vuex.Store({
     },
     actions: {
         async fetchCurrency() {
-            const key = process.env.VUE_APP_FIXER;
             const res = await fetch(
-                `http://data.fixer.io/api/latest?access_key=${key}&format=1&symbols=USD,EUR,RUB`
+                `https://api.currencyapi.com/v3/latest?apikey=w6LQFlC4KUKLzYvnyUktbM1Ecu7W8Vjyy4wPyHCZ&currencies=EUR%2CUSD%2CRUB`
             );
             const data = await res.json();
             return data;

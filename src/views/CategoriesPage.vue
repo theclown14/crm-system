@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Категории</h3>
+            <h3>{{ 'Menu_Categories' | localize }}</h3>
         </div>
         <section>
             <LoaderItem v-if="loading" />
@@ -12,7 +12,9 @@
                     :categories="categories"
                     :key="categories.length + updateCount"
                     @updated="updateCategories" />
-                <p class="center" v-else>Категорий пока нет</p>
+                <p class="center" v-else>
+                    {{ 'Caterogies_Not_Found' | localize }}
+                </p>
             </div>
         </section>
     </div>
@@ -24,6 +26,9 @@ import CategoryEdit from '@/components/CategoryEdit';
 
 export default {
     name: 'CategoriesPage',
+    metaInfo() {
+        return { title: this.$title('Menu_Categories') };
+    },
     data() {
         return {
             categories: [],

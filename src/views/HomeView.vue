@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Счет</h3>
+            <h3>{{ 'Bill' | localize }}</h3>
 
             <button
                 class="btn waves-effect waves-light btn-small"
@@ -11,8 +11,8 @@
         </div>
         <LoaderItem v-if="loading" />
         <div v-else class="row">
-            <HomeBill :rates="currency.rates" />
-            <HomeCurrency :rates="currency.rates" :date="currency.date" />
+            <HomeBill :rates="currency.data" />
+            <HomeCurrency :rates="currency.data" />
         </div>
     </div>
 </template>
@@ -23,6 +23,9 @@ import HomeCurrency from '@/components/HomeCurrency';
 
 export default {
     name: 'HomeView',
+    metaInfo() {
+        return { title: this.$title('Menu_Bills') };
+    },
     data() {
         return {
             loading: true,
@@ -30,7 +33,7 @@ export default {
         };
     },
     async mounted() {
-        // this.currency = await this.$store.dispatch('fetchCurrency');
+        this.currency = await this.$store.dispatch('fetchCurrency');
         this.loading = false;
     },
     components: {

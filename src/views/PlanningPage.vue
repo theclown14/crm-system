@@ -1,13 +1,15 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Планирование</h3>
+            <h3>{{ 'Menu_Planning' | localize }}</h3>
             <h4>{{ info.bill | currency('RUB') }}</h4>
         </div>
         <LoaderItem v-if="loading" />
         <p class="center" v-else-if="!categories.length">
-            Нет категорий.
-            <router-link to="/categories">Создать категорию</router-link>
+            {{ 'Caterogies_Not_Found' | localize }}
+            <router-link to="/categories">{{
+                'Category_Create' | localize
+            }}</router-link>
         </p>
         <section v-else>
             <div v-for="category in categories" :key="category.id">
@@ -35,6 +37,9 @@ import currencyFilter from '@/filters/currency.filter';
 
 export default {
     name: 'PlanningPage',
+    metaInfo() {
+        return { title: this.$title('Menu_Planning') };
+    },
     data() {
         return {
             loading: true,

@@ -36,6 +36,9 @@
 <script>
 export default {
     name: 'DetailRecordPage',
+    metaInfo() {
+        return { title: this.$title('Menu_NewRecord') };
+    },
     data() {
         return {
             record: null,

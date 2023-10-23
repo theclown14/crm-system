@@ -1,8 +1,11 @@
+import store from '@/store';
+
 export default function dateFilter(value) {
     const options = {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     };
-    return new Date(value).toLocaleDateString('ru-RU', options);
+    const locale = store.getters.info.locale || 'ru-RU';
+    return new Date(value).toLocaleDateString(locale, options);
 }

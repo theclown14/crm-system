@@ -1,13 +1,15 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Новая запись</h3>
+            <h3>{{ 'Menu_NewRecord' | localize }}</h3>
         </div>
 
         <LoaderItem v-if="loading" />
         <p class="center" v-else-if="!categories.length">
-            Нет категорий.
-            <router-link to="/categories">Создать категорию</router-link>
+            {{ 'Caterogies_Not_Found' | localize }}.
+            <router-link to="/categories">{{
+                'Category_Create' | localize
+            }}</router-link>
         </p>
         <form class="form" v-else @submit.prevent="submitHandler">
             <div class="input-field">
@@ -19,7 +21,7 @@
                         {{ category.title }}
                     </option>
                 </select>
-                <label>Выберите категорию</label>
+                <label>{{ 'Category_Choose' | localize }}</label>
             </div>
 
             <p>
@@ -30,7 +32,7 @@
                         type="radio"
                         value="income"
                         v-model="type" />
-                    <span>Доход</span>
+                    <span>{{ 'Icome' | localize }}</span>
                 </label>
             </p>
 
@@ -42,7 +44,7 @@
                         type="radio"
                         value="outcome"
                         v-model="type" />
-                    <span>Расход</span>
+                    <span>{{ 'Outcome' | localize }}</span>
                 </label>
             </p>
 
@@ -54,11 +56,11 @@
                     :class="{
                         invalid: $v.amount.$dirty && !$v.amount.minValue,
                     }" />
-                <label for="amount">Сумма</label>
+                <label for="amount">{{ 'Amount' | localize }}</label>
                 <span
                     v-if="$v.amount.$dirty && !$v.amount.minValue"
                     class="helper-text invalid"
-                    >Минимальное значение
+                    >{{ 'Enter_Min_Value' | localize }}
                     {{ $v.amount.$params.minValue.min }}</span
                 >
             </div>
@@ -72,16 +74,16 @@
                         invalid:
                             $v.description.$dirty && !$v.description.required,
                     }" />
-                <label for="description">Описание</label>
+                <label for="description">{{ 'Description' | localize }}</label>
                 <span
                     class="helper-text invalid"
                     v-if="$v.description.$dirty && !$v.description.required"
-                    >Введите описание
+                    >{{ 'Enter_Description' | localize }}
                 </span>
             </div>
 
             <button class="btn waves-effect waves-light" type="submit">
-                Создать
+                {{ 'Create' | localize }}
                 <i class="material-icons right">send</i>
             </button>
         </form>
@@ -94,6 +96,9 @@ import { mapGetters } from 'vuex';
 
 export default {
     name: 'RecordPage',
+    metaInfo() {
+        return { title: this.$title('Menu_NewRecord') };
+    },
     data() {
         return {
             categories: [],

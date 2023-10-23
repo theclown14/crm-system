@@ -15,30 +15,32 @@
 </template>
 
 <script>
+import localizeFilter from '@/filters/localize.filter';
+
 export default {
     props: ['value'],
     data() {
         return {
             links: [
                 {
-                    title: 'Счет',
+                    title: localizeFilter('Menu_Bills'),
                     url: '/',
                     exact: true,
                 },
                 {
-                    title: 'История',
+                    title: localizeFilter('Menu_History'),
                     url: '/history',
                 },
                 {
-                    title: 'Планирование',
+                    title: localizeFilter('Menu_Planning'),
                     url: '/planning',
                 },
                 {
-                    title: 'Новая запись',
+                    title: localizeFilter('Menu_NewRecord'),
                     url: '/record',
                 },
                 {
-                    title: 'Категории',
+                    title: localizeFilter('Menu_Categories'),
                     url: '/categories',
                 },
             ],
